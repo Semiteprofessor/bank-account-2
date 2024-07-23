@@ -115,12 +115,6 @@ const payLoan = () => {
   return { type: "account/payLoan" };
 };
 
-store.dispatch(deposit(5000));
-store.dispatch(withdraw(800));
-store.dispatch(requestLoan(50000, "Buy a car"));
-store.dispatch(payLoan());
-console.log(store.getState());
-
 const createCustomer = (
   customerId,
   customerName,
@@ -143,5 +137,21 @@ const createCustomer = (
     },
   };
 };
+
+store.dispatch(deposit(5000));
+store.dispatch(withdraw(800));
+store.dispatch(requestLoan(50000, "Buy a car"));
+store.dispatch(payLoan());
+store.dispatch(
+  createCustomer(
+    new Date().toISOString(),
+    "Taiwo Olapade",
+    "Yaba, Lagos",
+    "08069095729",
+    "semiteprofessor@gmail.com",
+    []
+  )
+);
+console.log(store.getState());
 
 export default store;
