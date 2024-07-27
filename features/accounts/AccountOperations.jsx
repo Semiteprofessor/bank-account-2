@@ -7,16 +7,12 @@ const AccountOperations = () => {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [currency, setCurrency] = useState("USD");
   const [loanAmount, setLoanAmount] = useState("");
-  const [loanPurpose, setLoanPurpose] = useState("");
 
   const dispatch = useDispatch();
 
-  const {
-    loan: currentLoan,
-    loanPurpose: currentLoanPurpose,
-    balance,
-    isLoading,
-  } = useSelector((state) => state.account.account);
+  const { loan, loanPurpose, balance, isLoading } = useSelector(
+    (store) => store.account
+  );
   console.log(balance);
 
   const handleDeposit = () => {
@@ -32,10 +28,8 @@ const AccountOperations = () => {
   };
 
   const handleRequestLoan = () => {
-    if (!loanAmount || !loanPurpose) return;
-    dispatch(requestLoan({ amount: loanAmount, purpose: loanPurpose }));
-    setLoanAmount("");
-    setLoanPurpose("");
+    if (!loan || !loanPurpose) return;
+    dispatch(requestLoan({ amount: loan, purpose: loanPurpose }));
   };
 
   const handlePayLoan = () => {
